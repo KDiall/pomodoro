@@ -166,15 +166,15 @@ export default function PomodoroTimer() {
               <div key={session.id} className="border rounded-lg p-4">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="font-semibold">
+                    <p className="font-semibold text-black">
                       {new Date(session.completedAt).toLocaleDateString()} at{' '}
                       {new Date(session.completedAt).toLocaleTimeString()}
                     </p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-black">
                       Duration: {Math.floor(session.duration / 60)} minutes
                     </p>
                     {session.notes && (
-                      <p className="text-sm text-gray-700 mt-1">{session.notes}</p>
+                      <p className="text-sm text-black mt-1">{session.notes}</p>
                     )}
                   </div>
                   <div className="text-green-500">
