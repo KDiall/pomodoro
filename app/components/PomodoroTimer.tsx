@@ -10,7 +10,7 @@ interface PomodoroSession {
 }
 
 export default function PomodoroTimer() {
-  const [timeLeft, setTimeLeft] = useState(1500) // 25 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(20) // 20 seconds for easy testing
   const [isRunning, setIsRunning] = useState(false)
   const [sessions, setSessions] = useState<PomodoroSession[]>([])
   const [notes, setNotes] = useState('')
@@ -53,7 +53,7 @@ export default function PomodoroTimer() {
   const handlePause = () => setIsRunning(false)
   const handleReset = () => {
     setIsRunning(false)
-    setTimeLeft(1500)
+    setTimeLeft(20)
     setNotes('')
     setShowNotesForm(false)
   }
@@ -66,7 +66,7 @@ export default function PomodoroTimer() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          duration: 1500,
+          duration: 20,
           notes: notes.trim() || null,
         }),
       })

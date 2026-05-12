@@ -4,7 +4,7 @@ A Pomodoro timer application that tracks focus sessions and saves them to a Post
 
 ## What It Does
 
-- **25-minute Pomodoro timer** with start, pause, and reset functionality
+- **20-second Pomodoro timer** with start, pause, and reset functionality (shortened for easy testing)
 - **Session logging** - automatically saves completed sessions to PostgreSQL
 - **Session history** - displays the last 10 completed sessions with timestamps and optional notes
 - **Optional notes** - add notes about what you worked on during each session
