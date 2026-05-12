@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '../../lib/prisma'
+import { db } from '../../lib/prisma'
 
 export async function GET() {
   try {
-    const sessions = await prisma.pomodoroSession.findMany({
+    const sessions = await db.pomodoroSession.findMany({
       orderBy: {
         completedAt: 'desc'
       },
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const session = await prisma.pomodoroSession.create({
+    const session = await db.pomodoroSession.create({
       data: {
         duration,
         notes: notes || null
