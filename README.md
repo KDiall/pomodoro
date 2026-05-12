@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pomodoro Timer with Session Log
 
-## Getting Started
+A Pomodoro timer application that tracks focus sessions and saves them to a PostgreSQL database. Built with Next.js, Prisma, and Tailwind CSS.
 
-First, run the development server:
+## What It Does
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **25-minute Pomodoro timer** with start, pause, and reset functionality
+- **Session logging** - automatically saves completed sessions to PostgreSQL
+- **Session history** - displays the last 10 completed sessions with timestamps and optional notes
+- **Optional notes** - add notes about what you worked on during each session
+- **Clean UI** - modern, responsive design using Tailwind CSS
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## The Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js 16** - React framework with App Router
+- **PostgreSQL** - Database (Neon cloud hosting)
+- **Prisma** - Database ORM and migration tool
+- **Tailwind CSS** - Utility-first CSS framework
+- **TypeScript** - Type safety
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How to Run It Locally
 
-## Learn More
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd pomodoro
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   Add your PostgreSQL database URL to the `.env` file:
+   ```
+   DATABASE_URL="postgresql://username:password@host:port/database"
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Run database migrations**
+   ```bash
+   npx prisma migrate dev
+   ```
 
-## Deploy on Vercel
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. **Open the application**
+   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## One Thing the AI Got Wrong That I Had to Fix
+
+The Prisma client setup in Next.js 16 with the new Prisma 7 configuration was challenging. The AI initially tried to use the standard `@prisma/client` import, but the new version requires a different configuration approach. I had to:
+
+1. Create a `prisma.config.ts` file for the database URL configuration
+2. Remove the URL from the schema file and move it to the config
+3. Use a require-based import with `@ts-ignore` to bypass TypeScript issues
+4. Fix the import paths in the API routes to use relative paths instead of absolute aliases
+
+The core functionality works perfectly, but the Prisma setup required manual adjustment to work with the latest versions.
